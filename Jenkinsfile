@@ -8,7 +8,7 @@ pipeline {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "10.12.124.93:8081"
-        NEXUS_REPOSITORY = "java-app"
+        NEXUS_REPOSITORY = "maven-repo"
         NEXUS_CREDENTIAL_ID = "NEXUS"
     }
 
