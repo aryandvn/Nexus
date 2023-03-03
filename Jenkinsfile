@@ -16,10 +16,9 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     withSonarQubeEnv('sq1') {
                         sh """
-                        #git clone https://github.com/aryandvn/New_Repo.git
-                        sudo docker run --rm -e SONAR_HOST_URL="http://10.12.124.93:9000/" -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=Jenkins_Sonar" -e SONAR_LOGIN="sqp_7dca9780bce088b96a80c72a736afd5d48c86162" -v "/var/lib/jenkins/workspace/Bar:/usr/src" sonarsource/sonar-scanner-cli"""
-                        }
+                        mvn clean verify sonar:sonar -Dsonar.projectKey=Demo -Dsonar.host.url=http://10.12.124.93:9000 -Dsonar.login=sqp_fb8057c7988ef1b0448ca66ff5a7ac8d0ca8ff5a"""
                     }
+                }
             }
         }
         stage('Build') {
