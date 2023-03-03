@@ -16,7 +16,7 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     withSonarQubeEnv('sq1') {
                         sh """
-                        mvn clean verify sonar:sonar -Dsonar.projectKey=Demo -Dsonar.host.url=http://10.12.124.93:9000 -Dsonar.login=sqp_fb8057c7988ef1b0448ca66ff5a7ac8d0ca8ff5a"""
+                        mvn clean verify sonar:sonar -Dsonar.projectKey=jenkins-nexus -Dsonar.host.url=http://10.12.124.93:9000 -Dsonar.login=sqp_fb8057c7988ef1b0448ca66ff5a7ac8d0ca8ff5a"""
                     }
                 }
             }
