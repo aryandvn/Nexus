@@ -11,6 +11,17 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '2015f835-5756-4d8f-86c2-c468cc526883', url: 'https://github.com/aryandvn/Nexus.git']])
             }
         }
+        stage('Static Analysis') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    withSonarQubeEnv('sq1') {
+                        sh """
+                        #git clone https://github.com/aryandvn/New_Repo.git
+                        sudo docker run --rm -e SONAR_HOST_URL="http://10.12.124.93:9000/" -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=Jenkins_Sonar" -e SONAR_LOGIN="sqp_7dca9780bce088b96a80c72a736afd5d48c86162" -v "/var/lib/jenkins/workspace/Bar:/usr/src" sonarsource/sonar-scanner-cli"""
+                        }
+                    }
+            }
+        }
         stage('Build') {
             steps {
                 sh "mvn clean package"
