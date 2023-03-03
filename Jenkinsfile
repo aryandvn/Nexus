@@ -45,7 +45,7 @@ pipeline {
                             repository: 'maven-repo',
                             credentialsId: 'NEXUS',
                             artifacts: [
-                                [artifactId: 'pom.app',
+                                [artifactId: 'pom.my-app',
                                 classifier: '',
                                 file: artifactPath,
                                 type: pom.packaging],
